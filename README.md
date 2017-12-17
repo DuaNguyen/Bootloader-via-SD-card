@@ -12,9 +12,11 @@ MEMORY
   SRAM1 (rwx): ORIGIN = 0x20000188, LENGTH = 64k - 0x188
 }
 FLASH (rx): ORIGIN = 0x08000000 : this script description first program memory address. Ensuing it’s 0x08000000 before load program into MCU.
+
 2. Step 2: Compiling application program  
 In this case bootloader is available in flash memory, we have to shift first address of application program memory in flash. That ensure that bootloader doesn’t overlap application program. Due to size of bootloader is about 83 Kb , first address of application program memory is 0x08015000 ( this address is corresponding to 84kb) .
 Thus, we have to edit information in linker script file:  ORIGIN = 0x08015000 before building program. 
+
 3. Step 3: Loading application program into MCU
 After we build application program (step 2) we can load the program into MCU (application program will be not overlap bootloader). In addition, we can load application program by bootloader via SD card communication. 
 Loading application program by bootloader via SD card communication:
